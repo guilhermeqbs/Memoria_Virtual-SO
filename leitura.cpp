@@ -6,24 +6,19 @@
 #include <string.h>
 
 #include "fifo.cpp"
-#include "prio.cpp"
-#include "srt.cpp"
-#include "rrq.cpp"
 #include "bubbleSort.cpp"
 
-int *aux1, *aux2, k=0;
-int *p, *y, *s, n, j=-1, aux;
-int *copyS;
+
+int m, n, p, *e;
+int tam, count=0;
+int *aux1, *aux2, k=0, j=-1;
 
 using namespace std;
-
 
 void entradaArquivo(string nomeTXT);
 void quebrarLinha(string linha);//Quebra a linha do arquivo em interos
 char *convercaoStringParaChar(string linha);
 int tamArquivo(string nomeTXT);
-void resetaS();
-void copiavS();
 
 //realiza a leitura do arquivo de entrada com os dados dos processos
 int main(){
@@ -34,49 +29,11 @@ int main(){
 
     cout<<"\nO arquivo 'entrada.txt' vai ser lido...\n\n";
     
-    n = tamArquivo(nomeTXT);
-
-    //alocacao dos vetores
-    aux1 = new int[n];
-    aux2 = new int[n*n];
-    copyS = new int[n];
-    p = new int[n];
-    y = new int[n];
-    s = new int[n];
+    tam = tamArquivo(nomeTXT) - 2;
 
     entradaArquivo(nomeTXT);
     
-    for(int i=0; i<n; i++)
-    {
-        p[i] = aux1[i];
-    }   
-    for(int i=1, m=0; i<n*n; i+=3, m++)
-    {
-        y[m] = aux2[i];
-        s[m] = aux2[i+1];
-    }
 
-    bubbleSort(n,p,y,s);
-    
-    copiavS();
-    
-    fifo(n,y,s);
-    
-    resetaS();
-
-    srt(n,y,s);
-
-    resetaS();
-
-    prio(n,p,y,s);
-
-    resetaS();
-
-    rrq(n,y,s);
-
-    delete p;
-    delete y;
-    delete s;
 
     cout<<"O arquivo 'saida.txt' foi gerado!\n";
 
@@ -87,7 +44,7 @@ int tamArquivo(string nomeTXT)
 {
     ifstream arq;
     string line;
-    int count = -1;
+    int contador = -1;
 
     arq.open(nomeTXT, ios::out );
 
@@ -98,13 +55,13 @@ int tamArquivo(string nomeTXT)
                 
                 //Quebra cada linha do arq e armazena numa string.
                 getline(arq,line);
-                count++;
+                contador++;
             }
         }
 
     arq.close();
     
-    return count;
+    return contador;
 }
 void entradaArquivo(string nomeTXT){
 
@@ -164,22 +121,5 @@ void quebrarLinha(string linha)
         //converter valores em int
         aux2[k] = atoi(fragLinha);
         k++;
-    }
-    
-}
-
-void copiavS()
-{   
-     for(int i=0; i<n; i++)
-    {
-        copyS[i] = s[i];
-    }
-} 
-
-void resetaS()
-{
-    for(int i=0; i<n; i++)
-    {
-        s[i] = copyS[i];
     }
 }
