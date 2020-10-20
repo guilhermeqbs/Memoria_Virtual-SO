@@ -6,6 +6,8 @@ using namespace std;
 
 void fifo(int n,int *y, int *s)
 {   
+    int copias;
+
     int espera[n]; //vetor que armazena o valor de espera de cada processo
     int  posicao = 0;
     float mediaEspera = 0, somaEspera = 0, mediaResposta = 0 ;

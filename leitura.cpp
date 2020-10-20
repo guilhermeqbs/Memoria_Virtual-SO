@@ -31,11 +31,32 @@ int main(){
     
     tam = tamArquivo(nomeTXT) - 2;
 
+    //alocacao dos vetores
+    aux1 = new int[tam];
+    e = new int[tam];
+    aux2 = new int[2];
+
     entradaArquivo(nomeTXT);
     
+    for(int i=0; i<tam+1; i++)
+    {
+        e[i] = aux1[i+1];
+        cout <<e[i] <<endl;
+    }
 
+    m = aux1[-1];
+    n = aux2[0];
+    p = aux2[1];
 
+    cout <<endl <<m <<endl;
+    cout <<n<<endl;
+    cout <<p<<endl;
+    
     cout<<"O arquivo 'saida.txt' foi gerado!\n";
+
+    delete e;
+    delete aux1;
+    delete aux2;
 
     return 0;
 
