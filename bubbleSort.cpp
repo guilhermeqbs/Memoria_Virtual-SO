@@ -4,27 +4,19 @@
 
 using namespace std;
 
-void bubbleSort(int n, int *p, int *y, int *s)
+void bubbleSort(int tam, int *v)
 {
-    int auxP, auxY, auxS;
+    int aux;
     //percorre todo o vetor
-    for(int i=0; i<n; i++)
+    for(int i=0; i<tam; i++)
     {
-        for(int j=1; j<n; j++)
+        for(int j=1; j<tam; j++)
         {
-            if(y[j-1] > y[j])
+            if(v[j-1] > v[j])
             {
-                auxP = p[j];
-                p[j] = p[j-1];
-                p[j-1] = auxP;
-
-                auxY = y[j];
-                y[j] = y[j-1];
-                y[j-1] = auxY;
-
-                auxS = s[j];
-                s[j] = s[j-1];
-                s[j-1] = auxS;
+                aux = v[j];
+                v[j] = v[j-1];
+                v[j-1] = aux;
             }
         }
     }

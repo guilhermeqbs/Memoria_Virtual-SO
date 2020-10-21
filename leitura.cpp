@@ -10,7 +10,7 @@
 
 
 int m, n, p, *e;
-int tam, count=0;
+int tam, count=0, cont;
 int *aux1, *aux2, k=0, j=-1, *mf;
 
 using namespace std;
@@ -44,11 +44,17 @@ int main(){
     divisaoEndereco(e,tam,p);
 
     mf = alocamentoMemoria(e,p,n,tam);
+
+    bubbleSort(tamMemoriaFisica(p,n),mf);
+
+    cont = trocas();
     
     for(int i=0; i<4; i++)
     {
         cout << mf[i] << endl;
     }
+    
+    cout <<endl <<cont <<endl;
 
     cout<<"O arquivo 'saida.txt' foi gerado!\n";
 
