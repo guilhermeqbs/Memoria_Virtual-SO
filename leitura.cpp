@@ -5,13 +5,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "fifo.cpp"
+#include "alocamento.cpp"
 #include "bubbleSort.cpp"
 
 
 int m, n, p, *e;
 int tam, count=0;
-int *aux1, *aux2, k=0, j=-1;
+int *aux1, *aux2, k=0, j=-1, *mf;
 
 using namespace std;
 
@@ -19,6 +19,7 @@ void entradaArquivo(string nomeTXT);
 void quebrarLinha(string linha);//Quebra a linha do arquivo em interos
 char *convercaoStringParaChar(string linha);
 int tamArquivo(string nomeTXT);
+void insercaoValores();
 
 //realiza a leitura do arquivo de entrada com os dados dos processos
 int main(){
@@ -32,26 +33,23 @@ int main(){
     tam = tamArquivo(nomeTXT) - 2;
 
     //alocacao dos vetores
-    aux1 = new int[tam];
+    aux1 = new int[tam+2];
     e = new int[tam];
     aux2 = new int[2];
 
     entradaArquivo(nomeTXT);
+
+    insercaoValores();
     
-    for(int i=0; i<tam+1; i++)
+    divisaoEndereco(e,tam,p);
+
+    mf = alocamentoMemoria(e,p,n,tam);
+    
+    for(int i=0; i<4; i++)
     {
-        e[i] = aux1[i+1];
-        cout <<e[i] <<endl;
+        cout << mf[i] << endl;
     }
 
-    m = aux1[-1];
-    n = aux2[0];
-    p = aux2[1];
-
-    cout <<endl <<m <<endl;
-    cout <<n<<endl;
-    cout <<p<<endl;
-    
     cout<<"O arquivo 'saida.txt' foi gerado!\n";
 
     delete e;
@@ -143,4 +141,16 @@ void quebrarLinha(string linha)
         aux2[k] = atoi(fragLinha);
         k++;
     }
+}
+
+void insercaoValores()
+{
+    for(int i=0; i<tam+1; i++) //insere os endereços de mem no vetor
+    {
+        e[i] = aux1[i+1];
+    }
+
+    m = aux1[-1];
+    n = aux2[0];
+    p = aux2[1];
 }
