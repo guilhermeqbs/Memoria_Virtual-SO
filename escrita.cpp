@@ -8,13 +8,19 @@
 using namespace std;
 
 //produz o arquivo com os resultados esperados
-void saidaArquivo(string str, float mediaEspera, float mediaResposta){
+void saidaArquivo(int contado, int *mf, int tamf){
 
     ofstream saida;
 
-    saida.open("saida.txt",fstream::app);
+    saida.open("saida.txt", ios::out);
 
-    saida <<str <<fixed <<setprecision(2)<<mediaEspera <<" "<<mediaResposta <<endl;
+    saida <<contado <<endl;
+    
+        for(int i=0; i<tamf; i++)
+        {
+            saida<< mf[i] <<" ";
+        }
+    
 
     saida.close();
 }

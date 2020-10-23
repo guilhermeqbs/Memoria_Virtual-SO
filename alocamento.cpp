@@ -14,14 +14,11 @@ int* alocamentoMemoria(int *e, int p, int n, int tam)
 {
     int tamFisica;
     int *memoriaFisica;
-    int primeiro;
 
     tamFisica = tamMemoriaFisica(p,n);
     memoriaFisica = new int (tamFisica);
 
     setValores(memoriaFisica, tamFisica, e);
-    
-    //primeiro;
 
     for(int j=tamFisica, i=0; j <=tam; j++) //percorre os dois vetores
     {

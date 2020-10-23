@@ -7,7 +7,7 @@
 
 #include "alocamento.cpp"
 #include "bubbleSort.cpp"
-
+#include "escrita.cpp"
 
 int m, n, p, *e;
 int tam, count=0, cont;
@@ -55,13 +55,10 @@ int main(){
     }
     
     cout <<endl <<cont <<endl;
-
+    saidaArquivo(cont,mf,(n/p));
     cout<<"O arquivo 'saida.txt' foi gerado!\n";
 
-    delete e;
-    delete aux1;
-    delete aux2;
-
+    
     return 0;
 
 }
@@ -121,8 +118,8 @@ char *convercaoStringParaChar(string linha)
     //Pois só é possivel conveter atraves do *char.
     char * aux = (char*) calloc(linha.length()+1, sizeof(char*));
     strcpy(aux, linha.c_str());
-
     return aux;
+   
 }
 
 //Quebra as linha do arquivo em outras variaveis.
